@@ -29,7 +29,8 @@ class Client extends BaseClient
         $params = [
             'src'   => $this->app['config']->appId,
             'pwd'   => $this->app['config']->appSecret,
-            'dest'  => $mobile,
+            'ServiceID' => 'SEND',
+            'dest'  => "86{$mobile}",
             'codec' => '8',
             'msg'   => $this->app['template']->authCodeMessage($code),
         ];
