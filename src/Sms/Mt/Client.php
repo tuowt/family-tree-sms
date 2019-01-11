@@ -23,27 +23,17 @@ class Client extends BaseClient
      *
      * @throws \FamilyTree\Kernel\Exceptions\InvalidConfigException
      */
-    public function sendAuthCode($mobile) {
+    public function sendAuthCode($mobile, $message) {
 
-        $code = $this->_code();
         $params = [
             'src'   => $this->app['config']->appId,
             'pwd'   => $this->app['config']->appSecret,
             'ServiceID' => 'SEND',
             'dest'  => "86{$mobile}",
             'codec' => '8',
-            'msg'   => $this->app['template']->authCodeMessage($code),
+            'msg'   => $this->app['template']->encodeMessage($message),
         ];
 
         return $this->httpPost($this->wrap('mt/MT3.ashx'), $params);
-    }
-
-    protected function _code($length = 6) {
-        $code = '';
-        for ($i = 1; $i <= $length; $i++) {
-            $code[] = mt_rand(0, 9);
-        }
-
-        return implode('', $code);
     }
 }
