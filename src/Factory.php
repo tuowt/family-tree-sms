@@ -22,8 +22,7 @@ class Factory
      *
      * @return \FamilyTree\\Kernel\ServiceContainer
      */
-    public static function make($name, $config)
-    {
+    public static function make($name, $config) {
         $namespace = Kernel\Support\Str::studly($name);
         $application = "\\FamilyTree\\{$namespace}\\Application";
 
@@ -38,8 +37,7 @@ class Factory
      *
      * @return mixed
      */
-    public static function __callStatic($name, $arguments)
-    {
-        return self::make($name, $arguments[0]);
+    public static function __callStatic($name, $arguments) {
+        return self::make($name, ...$arguments);
     }
 }

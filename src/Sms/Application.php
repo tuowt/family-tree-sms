@@ -25,6 +25,7 @@ class Application extends ServiceContainer
      */
     protected $providers = [
         Mt\ServiceProvider::class,
+        Template\ServiceProvider::class,
     ];
 
     /**
@@ -35,14 +36,4 @@ class Application extends ServiceContainer
             'base_uri' => 'http://m.isms360.com:8085/',
         ],
     ];
-
-    /**
-     * @param string|null $endpoint
-     *
-     * @return string
-     */
-    public function getKey($endpoint = null)
-    {
-        return $this['config']->key;
-    }
 }
